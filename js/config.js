@@ -200,5 +200,5 @@ const HIDE_BUILTIN_ADULT_APIS = true;
 
 // 用户认证配置
 const AUTH_CONFIG = {
-    accessCode: 'admin' // 访问密码
+    accessCode: 'cipheror' // 访问密码
 };
