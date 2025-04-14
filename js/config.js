@@ -103,6 +103,10 @@ const API_SITES = {
         name: 'lsb资源',
         adult: true
     },
+    cjhwba: {
+        api: 'https://cjhwba.com',
+        name: 'cjhwba资源',
+    },
     huangcang: {
         api: 'https://hsckzy.vip',
         name: '黄色仓库',
