@@ -2,7 +2,9 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>LibreTV 播放器</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
@@ -341,6 +343,12 @@
 
             // 添加页面离开事件监听，保存播放位置
             window.addEventListener('beforeunload', saveCurrentProgress);
+
+            // 添加全屏事件监听
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
         });
 
         // 处理键盘快捷键
@@ -1161,6 +1169,39 @@
         function getVideoId() {
             // 使用视频标题和集数索引作为唯一标识
             return `${encodeURIComponent(currentVideoTitle)}_${currentEpisodeIndex}`;
+        }
+
+        // 处理全屏变化事件
+        function handleFullscreenChange() {
+            // 检查是否已经启用了自动横屏功能
+            const autoLandscape = typeof PLAYER_CONFIG !== 'undefined' && 
+                                 PLAYER_CONFIG.autoLandscapeOnFullscreen !== undefined ? 
+                                 PLAYER_CONFIG.autoLandscapeOnFullscreen : true;
+            
+            if (!autoLandscape) return;
+            
+            // 判断是否进入全屏
+            const isFullScreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement || 
+                                 document.msFullscreenElement;
+            
+            // 仅对Android设备处理横屏
+            if (/Android/i.test(navigator.userAgent)) {
+                if (isFullScreen) {
+                    // 进入全屏时，尝试切换到横屏
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape').catch(function(error) {
+                            console.warn('无法锁定屏幕方向: ', error);
+                        });
+                    }
+                } else {
+                    // 退出全屏时，释放屏幕方向锁定
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                }
+            }
         }
     </script>
 </body>

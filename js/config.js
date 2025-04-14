@@ -160,7 +160,8 @@ const PLAYER_CONFIG = {
     filterAds: true,  // 是否启用广告过滤
     autoPlayNext: true,  // 默认启用自动连播功能
     adFilteringEnabled: true, // 默认开启分片广告过滤
-    adFilteringStorage: 'adFilteringEnabled' // 存储广告过滤设置的键名
+    adFilteringStorage: 'adFilteringEnabled', // 存储广告过滤设置的键名
+    autoLandscapeOnFullscreen: true // 全屏时自动切换到横屏模式
 };
 
 // 增加错误信息本地化
