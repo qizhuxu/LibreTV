@@ -200,6 +200,5 @@ const HIDE_BUILTIN_ADULT_APIS = true;
 
 // 用户认证配置
 const AUTH_CONFIG = {
-    username: 'admin',
-    password: 'admin'
+    accessCode: 'admin' // 访问密码
 };

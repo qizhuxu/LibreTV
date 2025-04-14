@@ -6,9 +6,8 @@
 // 会话有效期（24小时，单位：毫秒）
 const SESSION_DURATION = 24 * 60 * 60 * 1000;
 
-// 备用的默认用户名和密码（仅在无法从配置读取时使用）
-const DEFAULT_USERNAME = 'admin';
-const DEFAULT_PASSWORD = 'admin';
+// 备用的默认访问密码（仅在无法从配置读取时使用）
+const DEFAULT_ACCESS_CODE = 'admin';
 
 /**
  * 检查用户是否已登录
@@ -42,37 +41,25 @@ function isLoggedIn() {
 }
 
 /**
- * 获取当前的用户名
- * @returns {string} 当前用户名
+ * 获取当前的访问密码
+ * @returns {string} 当前访问密码
  */
-function getUsername() {
-    // 从配置文件读取用户名，如果配置不存在则使用默认值
-    return (typeof AUTH_CONFIG !== 'undefined' && AUTH_CONFIG.username) ? 
-        AUTH_CONFIG.username : DEFAULT_USERNAME;
-}
-
-/**
- * 获取当前的密码
- * @returns {string} 当前密码
- */
-function getPassword() {
-    // 从配置文件读取密码，如果配置不存在则使用默认值
-    return (typeof AUTH_CONFIG !== 'undefined' && AUTH_CONFIG.password) ? 
-        AUTH_CONFIG.password : DEFAULT_PASSWORD;
+function getAccessCode() {
+    // 从配置文件读取访问密码，如果配置不存在则使用默认值
+    return (typeof AUTH_CONFIG !== 'undefined' && AUTH_CONFIG.accessCode) ? 
+        AUTH_CONFIG.accessCode : DEFAULT_ACCESS_CODE;
 }
 
 /**
  * 用户登录
- * @param {string} username 用户名
- * @param {string} password 密码
+ * @param {string} accessCode 访问密码
  * @returns {boolean} 登录成功返回true，否则返回false
  */
-function login(username, password) {
-    const correctUsername = getUsername();
-    const correctPassword = getPassword();
+function login(accessCode) {
+    const correctAccessCode = getAccessCode();
     
-    // 验证用户名和密码
-    if (username === correctUsername && password === correctPassword) {
+    // 验证访问密码
+    if (accessCode === correctAccessCode) {
         // 设置登录状态
         localStorage.setItem('libreTvLoggedIn', 'true');
         // 记录登录时间
