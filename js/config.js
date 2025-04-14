@@ -105,7 +105,7 @@ const API_SITES = {
     },
     cjhwba: {
         api: 'https://cjhwba.com',
-        name: 'cjhwba资源',
+        name: '华为吧资源',
     },
     huangcang: {
         api: 'https://hsckzy.vip',
