@@ -41,6 +41,16 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+        
+        .info-link {
+            color: #a855f7;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        
+        .info-link:hover {
+            color: #ec4899;
+        }
     </style>
 </head>
 <body class="page-bg text-white flex items-center justify-center min-h-screen">
@@ -70,6 +80,10 @@
                     访问
                 </button>
             </div>
+            
+            <div class="text-center text-sm text-gray-500 mt-4">
+                <p>还没有访问密码？<a id="blog-link" href="#" class="info-link" target="_blank">点击查看博客中的公益项目文章获取</a></p>
+            </div>
         </form>
     </div>
 
@@ -84,6 +98,10 @@
             const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
             window.location.href = redirectUrl;
         }
+        
+        // 设置博客链接
+        document.getElementById('blog-link').href = typeof AUTH_CONFIG !== 'undefined' && AUTH_CONFIG.blogPostUrl ? 
+            AUTH_CONFIG.blogPostUrl : 'https://blog.cipheror.com/86701aeddb51';
         
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
