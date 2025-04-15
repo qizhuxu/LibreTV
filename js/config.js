@@ -197,10 +197,10 @@ const CUSTOM_API_CONFIG = {
 };
 
 // 新增隐藏内置黄色采集站API的变量，默认为true
-const HIDE_BUILTIN_ADULT_APIS = false;
+const HIDE_BUILTIN_ADULT_APIS = true;
 
 // 用户认证配置
 const AUTH_CONFIG = {
-    accessCode: 'cipheror', // 访问密码
+    accessCode: 'qiqi8699', // 访问密码
     blogPostUrl: 'https://blog.cipheror.com/86701aeddb51' // 获取访问密码的博客文章地址
 };
